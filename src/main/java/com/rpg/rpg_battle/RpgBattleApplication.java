@@ -1,5 +1,6 @@
 package com.rpg.rpg_battle;
 
+import com.rpg.rpg_battle.model.BattleEngine;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,8 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class RpgBattleApplication {
 
 	public static void main(String[] args) {
-        SpringApplication.run(RpgBattleApplication.class, args);
-        System.out.println("start");
+        BattleEngine engine = new BattleEngine();
+
+        engine.initializeCharacters();
 	}
 
 }
