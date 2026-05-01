@@ -3,9 +3,8 @@ package com.rpg.rpg_battle.model;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-@Getter
-@Setter
 @SuperBuilder
+@AllArgsConstructor
 @NoArgsConstructor
 public class Paladin extends Characters {
     @Override
