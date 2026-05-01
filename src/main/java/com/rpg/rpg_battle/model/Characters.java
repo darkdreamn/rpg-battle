@@ -25,5 +25,4 @@ public abstract class Characters {
     protected int physicalAttack;
 
     public abstract int usePhysicalAttack();
-    public abstract int useMagicPower();
 }

@@ -1,5 +1,6 @@
 package com.rpg.rpg_battle.model;
 
+import com.rpg.rpg_battle.model.interfaces.MagicUser;
 import lombok.experimental.SuperBuilder;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,7 @@ import lombok.NoArgsConstructor;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Mage extends Characters {
+public class Mage extends Characters implements MagicUser {
     @Override
     public int usePhysicalAttack() {
         System.out.println("Golpe de Cajado");

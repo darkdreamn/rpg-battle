@@ -1,12 +1,14 @@
 package com.rpg.rpg_battle.model;
 
-import lombok.*;
+import com.rpg.rpg_battle.model.interfaces.MagicUser;
 import lombok.experimental.SuperBuilder;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Paladin extends Characters {
+public class Paladin extends Characters implements MagicUser {
     @Override
     public int usePhysicalAttack() {
         int bonus = 0;
