@@ -1,5 +1,7 @@
 package com.rpg.rpg_battle.model;
 
+import java.util.Scanner;
+
 public class BattleEngine {
     Characters[] characters = new Characters[4];
 
@@ -51,7 +53,43 @@ public class BattleEngine {
         System.out.println("-- Personagens carregados --");
     }
 
-    public void selectContestants() {}
-    public void startBattle() {}
-    public void displayStatus() {}
+    public void selectContestants() {
+        Scanner scanner = new Scanner(System.in);
+        int selected = 0;
+
+        do {
+            System.out.println("PERSONAGENS");
+            System.out.println(selected == 0 ? "Escolha o primeiro: " : "Escolha o segundo: ");
+            for (int i = 1; i < characters.length; i++) {
+                String status = characters[i].isActive() ? "[X]" : "[" + i + "]";
+                System.out.println(status + " " + characters[i].getName());
+            }
+            try {
+                int value = Integer.parseInt(scanner.nextLine());
+                if (value >= 1 && value < characters.length) {
+                    if (!characters[value].isActive()) {
+                        characters[value].setActive(true);
+                        selected++;
+                    } else {
+                        System.out.println("Personagem já selecionado! Escolha outro.");
+                    }
+                } else {
+                    System.out.println("Opção inválida. Digite um número entre 1 e " + (characters.length - 1));
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Erro: Digite apenas números.");
+            }
+        } while (selected < 2);
+        System.out.println("Combate pronto! Pressione [ENTER] para começar");
+        scanner.nextLine();
+    }
+
+
+
+
+    public void startBattle() {
+    }
+
+    public void displayStatus() {
+    }
 }

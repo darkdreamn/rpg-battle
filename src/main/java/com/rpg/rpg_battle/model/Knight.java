@@ -1,11 +1,9 @@
 package com.rpg.rpg_battle.model;
 
 import lombok.experimental.SuperBuilder;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @SuperBuilder
-@AllArgsConstructor
 @NoArgsConstructor
 public class Knight extends Characters {
     @Override

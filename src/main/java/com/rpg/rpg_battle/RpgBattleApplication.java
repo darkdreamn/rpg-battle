@@ -11,6 +11,7 @@ public class RpgBattleApplication {
         BattleEngine engine = new BattleEngine();
 
         engine.initializeCharacters();
+        engine.selectContestants();
 	}
 
 }

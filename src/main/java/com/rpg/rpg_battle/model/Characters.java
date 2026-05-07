@@ -8,7 +8,6 @@ import java.util.Random;
 @Getter
 @Setter
 @SuperBuilder
-@AllArgsConstructor
 @NoArgsConstructor
 public abstract class Characters {
     protected static final Random RANDOM_GENERATOR = new Random();
