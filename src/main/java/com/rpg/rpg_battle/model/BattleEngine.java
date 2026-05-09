@@ -3,6 +3,7 @@ package com.rpg.rpg_battle.model;
 import java.util.Scanner;
 
 public class BattleEngine {
+    public static final Scanner scanner = new Scanner(System.in);
     Characters[] characters = new Characters[4];
 
     public void initializeCharacters() {
@@ -54,7 +55,6 @@ public class BattleEngine {
     }
 
     public void selectContestants() {
-        Scanner scanner = new Scanner(System.in);
         int selected = 0;
 
         do {
@@ -82,14 +82,22 @@ public class BattleEngine {
         } while (selected < 2);
         System.out.println("Combate pronto! Pressione [ENTER] para começar");
         scanner.nextLine();
+
     }
-
-
-
 
     public void startBattle() {
     }
 
-    public void displayStatus() {
+    public void displayStatus(Characters currentAttacker) {
+        for (Characters c : characters) {
+            if (c.isActive()) {
+                String turnMarker = (c == currentAttacker ? "[*] " : "[ ]");
+                System.out.println(c.getName() + " Turno: " + turnMarker);
+                System.out.printf("HP: %d | MP: %d | AT.M: %d | AT.F: %d | DEF.M: %d | DEF.F: %d%n",
+                        c.getHealthPoints(), c.getMagicPoints(), c.getMagicAttack(),
+                        c.getPhysicalAttack(), c.getMagicDefense(), c.getPhysicalDefense());
+                System.out.println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨");
+            }
+        }
     }
 }
