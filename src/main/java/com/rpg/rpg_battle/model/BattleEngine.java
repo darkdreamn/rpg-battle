@@ -1,12 +1,16 @@
 package com.rpg.rpg_battle.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class BattleEngine {
     public static final Scanner scanner = new Scanner(System.in);
-    Characters[] characters = new Characters[4];
+    private Characters[] characters;
 
     public void initializeCharacters() {
+        this.characters = new Characters[4];
         characters[0] = Dragon.builder()
                 .name("Dragon")
                 .active(true)
@@ -86,6 +90,13 @@ public class BattleEngine {
     }
 
     public void startBattle() {
+        List<Characters> active = new ArrayList<>();
+        for (Characters c : characters) {
+            if (c.isActive()) {
+                active.add(c);
+            }
+        }
+        Collections.shuffle(active);
     }
 
     public void displayStatus(Characters currentAttacker) {
