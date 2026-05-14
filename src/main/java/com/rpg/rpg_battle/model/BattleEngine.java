@@ -1,9 +1,8 @@
 package com.rpg.rpg_battle.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import com.rpg.rpg_battle.model.enums.Side;
+
+import java.util.*;
 
 public class BattleEngine {
     public static final Scanner scanner = new Scanner(System.in);
@@ -20,6 +19,7 @@ public class BattleEngine {
                 .magicAttack(4)
                 .physicalDefense(3)
                 .physicalAttack(5)
+                .side(Side.ENEMY)
                 .build();
 
         characters[1] = Knight.builder()
@@ -31,6 +31,7 @@ public class BattleEngine {
                 .magicAttack(0)
                 .physicalDefense(4)
                 .physicalAttack(5)
+                .side(Side.HERO)
                 .build();
 
         characters[2] = Paladin.builder()
@@ -42,6 +43,7 @@ public class BattleEngine {
                 .magicAttack(3)
                 .physicalDefense(3)
                 .physicalAttack(4)
+                .side(Side.HERO)
                 .build();
 
         characters[3] = Mage.builder()
@@ -53,6 +55,7 @@ public class BattleEngine {
                 .magicAttack(4)
                 .physicalDefense(1)
                 .physicalAttack(1)
+                .side(Side.HERO)
                 .build();
 
         System.out.println("-- Personagens carregados --");
@@ -97,6 +100,19 @@ public class BattleEngine {
             }
         }
         Collections.shuffle(active);
+        Queue<Characters> queueOfTurns = new LinkedList<>(active);
+
+        while (checkEndCombat(queueOfTurns)) {
+
+            displayStatus(active.getFirst());
+        }
+
+    }
+
+    public boolean checkEndCombat(Queue<Characters> queueOfTurns) {
+        boolean heroesActive = queueOfTurns.stream().anyMatch(p -> p.getSide() == Side.HERO);
+        boolean enemyActive = queueOfTurns.stream().anyMatch(p -> p.getSide() == Side.ENEMY);
+        return (heroesActive && enemyActive);
     }
 
     public void displayStatus(Characters currentAttacker) {
@@ -107,7 +123,7 @@ public class BattleEngine {
                 System.out.printf("HP: %d | MP: %d | AT.M: %d | AT.F: %d | DEF.M: %d | DEF.F: %d%n",
                         c.getHealthPoints(), c.getMagicPoints(), c.getMagicAttack(),
                         c.getPhysicalAttack(), c.getMagicDefense(), c.getPhysicalDefense());
-                System.out.println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨");
+                System.out.println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨");
             }
         }
     }

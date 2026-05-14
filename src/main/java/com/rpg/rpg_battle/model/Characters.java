@@ -1,5 +1,6 @@
 package com.rpg.rpg_battle.model;
 
+import com.rpg.rpg_battle.model.enums.Side;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -22,6 +23,8 @@ public abstract class Characters {
     protected int magicAttack;
     protected int physicalDefense;
     protected int physicalAttack;
+
+    private Side side;
 
     public abstract int usePhysicalAttack();
 }

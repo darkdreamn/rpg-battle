@@ -12,6 +12,7 @@ public class RpgBattleApplication {
 
         engine.initializeCharacters();
         engine.selectContestants();
+        engine.startBattle();
 	}
 
 }
