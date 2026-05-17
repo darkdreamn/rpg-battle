@@ -1,5 +1,6 @@
 package com.rpg.rpg_battle.model;
 
+import com.rpg.rpg_battle.model.enums.CombatResult;
 import com.rpg.rpg_battle.model.enums.Side;
 
 import java.util.*;
@@ -106,7 +107,19 @@ public class BattleEngine {
 
             displayStatus(active.getFirst());
         }
+        CombatResult finalResult = determineWinner(queueOfTurns);
+        System.out.println(finalResult == CombatResult.HEROES_VICTORY ?
+                "Os heróis venceram" : "Game Over... os heróis caíram");
+    }
 
+    public CombatResult determineWinner(Queue<Characters> queueOfTurns) {
+        boolean heroesAlive = queueOfTurns.stream().anyMatch(p -> p.getSide() == Side.HERO);
+
+        if (heroesAlive) {
+            return CombatResult.HEROES_VICTORY;
+        } else {
+            return CombatResult.ENEMY_VICTORY;
+        }
     }
 
     public boolean checkEndCombat(Queue<Characters> queueOfTurns) {
